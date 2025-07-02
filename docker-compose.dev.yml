@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: ./server
+      target: dev
+      args:
+        NODE_ENV: development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "8000:8000"
+
+  web:
+    build:
+      context: ./web
+      args:
+        NODE_ENV: development
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
