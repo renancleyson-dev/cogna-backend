@@ -14,24 +14,37 @@ const {
   },
 } = process;
 
-const REQUIRED_ENV = [PORT, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME];
-
-export function validateEnv() {
-  if (REQUIRED_ENV.some((envVar) => !envVar)) {
-    throw new Error(
-      "Missing required environment variables. Please check your .env file.",
-    );
-  }
-}
-
-export const CONFIG = {
-  ENV: NODE_ENV,
-  PORT: Number(PORT),
-  SECRET_KEY,
-  DB_NAME,
+const REQUIRED_ENV = {
+  PORT,
   DB_USER,
   DB_PASSWORD,
   DB_HOST,
+  DB_PORT,
+  DB_NAME,
+  SECRET_KEY,
+};
+
+export function validateEnv() {
+  for (const [key, value] of Object.entries(REQUIRED_ENV)) {
+    if (!value) {
+      throw new Error(`Missing required environment variable: ${key}`);
+    }
+  }
+}
+
+function castRequiredConfig() {
+  type NonUndefined<T> = {
+    [K in keyof T]-?: Exclude<T[K], undefined>;
+  };
+
+  return { ...REQUIRED_ENV } as NonUndefined<typeof REQUIRED_ENV>;
+}
+
+const requiredConfig = castRequiredConfig();
+export const CONFIG = {
+  ...requiredConfig,
+  ENV: NODE_ENV,
+  PORT: Number(PORT),
   DB_PORT: Number(DB_PORT),
 };
 

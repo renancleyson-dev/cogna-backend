@@ -1,4 +1,4 @@
-import { type Selectable } from "kysely";
+import type { Selectable } from "kysely";
 import type { ProductTable } from "../db/types";
 
 export function toProductDTO(product: Selectable<ProductTable>) {

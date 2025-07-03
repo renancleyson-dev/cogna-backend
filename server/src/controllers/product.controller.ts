@@ -38,13 +38,15 @@ export async function showProduct(req: Request<{ id: string }>, res: Response) {
   const productId = parseInt(req.params.id);
   if (Number.isNaN(productId)) {
     res.status(400).json({ error: "Invalid product ID" });
+    return;
   }
 
   const product = await getProductById(productId);
 
   if (!product) {
     res.status(404).json({ error: "Product not found" });
-  } else {
-    res.status(200).json(toProductDTO(product));
+    return;
   }
+
+  res.status(200).json(toProductDTO(product));
 }
