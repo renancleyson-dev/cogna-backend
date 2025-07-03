@@ -1,6 +1,6 @@
 import type { Router } from "express";
-import { getIndex } from "../controllers/index.controller";
+import { productsRouter } from "./product.route";
 
 export function setRoutes(app: Router) {
-  app.get("/api", getIndex);
+  app.use("/produtos", productsRouter);
 }
