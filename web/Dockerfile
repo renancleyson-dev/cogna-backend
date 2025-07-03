@@ -1,4 +1,4 @@
-FROM node:22.17-alpine
+FROM node:22.17-alpine AS base
 
 WORKDIR /app
 
@@ -9,10 +9,12 @@ COPY . .
 
 EXPOSE 8080
 
-ARG NODE_ENV=production
-ENV NODE_ENV=$NODE_ENV
+FROM base AS prod
+ENV NODE_ENV=production
+RUN pnpm exec next telemetry disable
+RUN pnpm build
+CMD ["pnpm", "start"]
 
-# Only build in production
-RUN if [ "$NODE_ENV" = "production" ]; then pnpm build; fi
-
-CMD [ "sh", "-c", "if [ \"$NODE_ENV\" = \"production\" ]; then pnpm start; else pnpm dev; fi" ]
+FROM base AS dev
+ENV NODE_ENV=development
+CMD ["pnpm", "dev"]

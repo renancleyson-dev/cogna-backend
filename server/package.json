@@ -2,14 +2,14 @@
   "name": "test-cogna-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "module": "./dist/server.mjs",
   "engines": {
     "node": ">=22.17.0"
   },
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "tsx --env-file=.env dist/server.js",
+    "build": "tsc --noEmit && pkgroll",
+    "start": "node dist/server.mjs",
     "dev": "tsx --env-file=.env --watch src/server.ts",
     "migrate": "kysely migrate:latest",
     "seed": "kysely seed run",
@@ -27,6 +27,7 @@
     "@types/node": "^24.0.10",
     "@types/pg": "^8.15.4",
     "kysely-ctl": "^0.13.1",
+    "pkgroll": "^2.13.1",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
