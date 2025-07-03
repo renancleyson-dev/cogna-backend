@@ -6,6 +6,7 @@ const {
     PORT,
     ALLOWED_ORIGINS,
     DB_USER,
+    SECRET_KEY,
     DB_PASSWORD,
     DB_HOST,
     DB_PORT,
@@ -26,8 +27,12 @@ export function validateEnv() {
 export const CONFIG = {
   ENV: NODE_ENV,
   PORT: Number(PORT),
-  SECRET_KEY: process.env.SECRET_KEY,
-  DB_URL: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+  SECRET_KEY,
+  DB_NAME,
+  DB_USER,
+  DB_PASSWORD,
+  DB_HOST,
+  DB_PORT: Number(DB_PORT),
 };
 
 export function getCorsCofig(): CorsOptions {
@@ -43,5 +48,3 @@ export function getCorsCofig(): CorsOptions {
     optionsSuccessStatus: 200,
   };
 }
-
-export type Config = typeof CONFIG;

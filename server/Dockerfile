@@ -28,5 +28,6 @@ CMD ["pnpm", "start"]
 FROM base AS dev
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY . .
+
 EXPOSE 8000
 CMD ["pnpm", "dev"]

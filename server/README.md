@@ -4,9 +4,11 @@ This is a basic Express application built with TypeScript.
 
 ## Setup Instructions
 
-Node: v22.17.0
+Node v22.17.0
 
-pnpm: v9.15.0
+pnpm v9.15.0
+
+Postgres 16
 
 1. **Clone the repository:**
    ```
@@ -23,6 +25,7 @@ pnpm: v9.15.0
    ```
    cp .env.example .env
    ```
+   Define your database variables and others a needed
 
 1. **Compile TypeScript:**
    ```
@@ -51,6 +54,7 @@ Once the application is running, you can access it at `http://localhost:8000`. T
 - `src/controllers/`: Contains functions handling repositories for a specific route.
 - `src/routes/`: Contains application route-controller mappings, each `<route-path>.route.ts` defines the routing for that filename's base route
 - `src/repositories/`: Contains application logic functions inspired by the Repository Pattern.
+- `src/db/`: Database settings, migrations, and seeds.
 
 ## Conventions
 
