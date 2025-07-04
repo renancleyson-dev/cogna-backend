@@ -1,19 +1,21 @@
 import { promises as fs } from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-import { dirname } from "node:path";
 import {
   Kysely,
   PostgresDialect,
   Migrator,
   FileMigrationProvider,
 } from "kysely";
-import { Pool } from "pg";
+import { Pool, types } from "pg";
 import { CONFIG } from "../config";
 import type { Database } from "./types";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = path.dirname(__filename);
+
+types.setTypeParser(types.builtins.INT8, (val) => Number(val));
+types.setTypeParser(types.builtins.NUMERIC, (value) => parseFloat(value));
 
 const dialect = new PostgresDialect({
   pool: new Pool({

@@ -7,7 +7,7 @@ export function toProductDTO(product: Selectable<ProductTable>) {
     name: product.name,
     description: product.description,
     price: product.price,
-    createdAt: product.createdAt,
-    updatedAt: product.updatedAt,
+    createdAt: product.createdAt.toISOString(),
+    updatedAt: product.updatedAt.toISOString(),
   };
 }

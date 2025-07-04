@@ -8,8 +8,8 @@ export async function countResource<T extends keyof Database>(
 ): Promise<number> {
   const result = await db
     .selectFrom(table)
-    .select(({ fn }) => [fn.count<number>(identifier).as("count")])
-    .executeTakeFirst();
+    .select((eb) => eb.fn.count<number>(identifier).as("count"))
+    .execute();
 
-  return result?.count ?? 0;
+  return result[0]?.count ?? 0;
 }

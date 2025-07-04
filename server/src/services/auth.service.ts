@@ -4,7 +4,7 @@ import { CONFIG } from "../config";
 export function isAuthenticated(token: string) {
   try {
     return jwt.verify(token, CONFIG.SECRET_KEY);
-  } catch (error) {
+  } catch {
     return false;
   }
 }

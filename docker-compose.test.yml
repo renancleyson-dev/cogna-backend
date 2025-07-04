@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./server
+      target: dev
+    command: pnpm test
+    environment:
+      - NODE_ENV=test
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  # frontend:
+  #  build:
+  #    context: ./web
+  #  command: pnpm run cy:run
+  #  environment:
+  #    - NODE_ENV=test
+  #  ports:
+  #    - "3000:3000"
+  #  depends_on:
+  #    - backend
+
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=test_cogna_test
+    ports:
+      - "25432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:

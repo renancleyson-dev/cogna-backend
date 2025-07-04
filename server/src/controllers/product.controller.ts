@@ -7,12 +7,14 @@ import { countResource } from "../utils/query";
 import { toProductDTO } from "../data/product.data";
 
 export async function listProducts(req: Request, res: Response) {
-  const { qPage, qPerPage } = req.query;
+  const { page: qPage, perPage: qPerPage } = req.query;
   if (qPage && Number.isNaN(Number(qPage))) {
     res.status(400).json({ error: "Invalid page number" });
+    return;
   }
   if (qPerPage && Number.isNaN(Number(qPerPage))) {
     res.status(400).json({ error: "Invalid perPage number" });
+    return;
   }
 
   const page = parseInt(qPage as string) || 1;
@@ -29,7 +31,7 @@ export async function listProducts(req: Request, res: Response) {
     page,
     perPage,
     total,
-    products: products.map(toProductDTO),
+    result: products.map(toProductDTO),
     totalPages: Math.ceil(total / perPage),
   });
 }
