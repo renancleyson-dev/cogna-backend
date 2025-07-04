@@ -60,6 +60,7 @@ Once the application is running, you can access it at `http://localhost:8000`.
 - `src/routes/`: Contains application route-controller mappings, each `<route-path>.route.ts` defines the routing for that filename's base route
 - `src/repositories/`: Contains application logic functions inspired by the Repository Pattern.
 - `src/data/`: DTO and validation layer.
+- `src/services`: Contains any logic related to external services or separated from the database.
 - `src/db/`: Database settings, migrations, and seeds.
 
 ## Conventions

@@ -12,18 +12,24 @@ Each service has its own README file with specific setup and usage instructions.
 
 To start the entire project using Docker Compose:
 
-```sh
-docker-compose -f docker-compose-app/docker-compose.yml up --build
-```
+1. **Set up environment variables:**
+    ```
+    cp server/.env.example server/.env
+    cp web/.env.example web/.env
+    ```
 
-For development mode:
-
-```sh
-docker-compose -f docker-compose-app/docker-compose.dev.yml up --build
-```
-
-This will build and run both the backend and frontend services.
+2. **Run docker compose for development**
+    ```sh
+    docker compose -f docker-compose-app/docker-compose.dev.yml up --build
+    ```
 
 ---
 
-For more information about each service, check their respective README
+## Technical choices
+
+* Monorepo like project: According to the test, the project should be a Github repository and it would be good to setup Docker/Docker Compose with CI/CD pipelines. The best way to handle it with a fullstack NextJS application and a separate ExpressJS backend was making it into a monorepo to setup single pipelines to handle both services
+* Backend folder structure: I tried to make layers with clear separation of concerns with a 'core' layer that would handle application logic, so I used:
+  * classic Controller pattern with plain functions as Express route handlers
+  * Repository pattern as the core layer
+  * Data layer for DTO and validating API input
+  * Services for external services and logic unrelated to data storage, like the anononymous signIn logic
