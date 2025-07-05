@@ -1,4 +1,3 @@
-import type { SignIn } from "@server/types";
 import { CONFIG } from "../config";
 import { cookies } from "next/headers";
 
@@ -6,7 +5,7 @@ const TOKEN_COOKIE_KEY = "auth:token";
 
 export async function SignInAnon(
   params: { email: string }
-): Promise<{ error?: string } & Partial<SignIn>> {
+): Promise<{ error?: string; token: string; }> {
   const response = await fetch(new URL("/auth/anonymous", CONFIG.API_URL), {
     method: "POST",
     body: JSON.stringify(params),

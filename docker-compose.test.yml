@@ -5,6 +5,16 @@ services:
       target: prod
     ports:
       - "8000:8000"
+    env_file: ./server/.env.test
+    depends_on:
+      - test-db
+
+  db-migration:
+    build:
+      context: ./server
+      target: dev
+    command: pnpm migrate-and-seed
+    env_file: ./server/.env.test
     depends_on:
       - test-db
 
@@ -13,6 +23,7 @@ services:
       context: ./server
       target: dev
     command: pnpm test
+    env_file: ./server/.env.test
     environment:
       - NODE_ENV=test
     depends_on:
@@ -22,10 +33,14 @@ services:
     build:
       context: ./web
       target: prod
+    environment:
+      - API_URL=http://server:8000
     ports:
       - "3000:3000"
     depends_on:
       - server
+    volumes:
+      - web_src:/app/
 
   cypress:
       image: "cypress/included:14.5.1"
@@ -37,7 +52,7 @@ services:
         - CYPRESS_API_URL=http://server:8000
       working_dir: /e2e
       volumes:
-        - ./web:/e2e
+        - web_src:/e2e
 
   test-db:
     image: postgres:16
@@ -52,3 +67,4 @@ services:
 
 volumes:
   postgres_test_data:
+  web_src:

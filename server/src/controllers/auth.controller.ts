@@ -17,8 +17,5 @@ export async function signIn(req: Request, res: Response) {
     return;
   }
 
-  const payload: SignIn = { token: anonSignIn(email) };
-  res.status(201).json(payload);
+  res.status(201).json({ token: anonSignIn(email) });
 }
-
-export type SignIn = { token: string };
