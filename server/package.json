@@ -15,6 +15,7 @@
     "migrate": "kysely migrate:latest",
     "seed": "kysely seed run",
     "migrate:down": "kysely migrate:down",
+    "migrate-and-seed": "kysely migrate:latest && kysely seed run",
     "test": "tsx --test --env-file-if-exists=.env.test"
   },
   "keywords": [],

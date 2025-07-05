@@ -39,4 +39,5 @@ Cypress.Commands.add("login", (email: string) => {
   cy.visit("/login");
   cy.get('input[name="email"]').type(email);
   cy.get("button").contains("Entrar").click();
+    cy.url().should("eq", `${Cypress.config().baseUrl}/`);
 });

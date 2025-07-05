@@ -1,7 +1,23 @@
 import { CONFIG } from "../config";
-import type { ListProducts, ShowProduct } from "@server/types";
 import { getToken } from "./auth";
 import { redirect } from "next/navigation";
+
+export type ShowProduct = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type ListProducts = {
+  total: number;
+  perPage: number;
+  page: number;
+  totalPages: number;
+  result: ShowProduct[];
+}
 
 export async function getProducts(page: number) {
   const authToken = await getToken();
