@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // We will run tsc on CI/CD so we can use types from multiple projects
+  typescript: {
+    ignoreBuildErrors: true,
+  },};
 
 export default nextConfig;
