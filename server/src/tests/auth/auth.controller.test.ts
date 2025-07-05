@@ -9,7 +9,7 @@ describe("Auth Controller", () => {
   it("should sign-in anon users with valid e-mails", async () => {
     const req = httpMocks.createRequest({
       method: "POST",
-      url: "/auth/signin",
+      url: "/auth/anonymous",
       body: {
         email: faker.internet.email(),
       },

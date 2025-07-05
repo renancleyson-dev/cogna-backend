@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc --noEmit && pkgroll",
     "start": "node --env-file-if-exists=.env dist/server.mjs",
-    "dev": "tsx ---env-file-if-exists=.env --watch src/server.ts",
+    "dev": "tsx --env-file-if-exists=.env --watch src/server.ts",
     "migrate": "kysely migrate:latest",
     "seed": "kysely seed run",
     "migrate:down": "kysely migrate:down",

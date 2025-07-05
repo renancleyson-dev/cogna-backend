@@ -4,27 +4,27 @@ import type { Database } from "../types";
 export async function seed(db: Kysely<Database>): Promise<void> {
   await Promise.all([
     db
+    .insertInto("product")
+    .values({
+      name: "Logitech MX Master 3S",
+      description: "Mouse sem fio ergonômico com sensor de 8000 DPI e rolagem eletromagnética MagSpeed.",
+      price: 499.90,
+    })
+    .execute(),
+    db
       .insertInto("product")
       .values({
-        name: "Product 1",
-        description: "Description for Product 1",
-        price: 19.99,
+        name: "Samsung SSD 980 PRO 1TB",
+        description: "SSD NVMe PCIe 4.0 com velocidades de leitura de até 7000 MB/s, ideal para gamers e criadores.",
+        price: 789.00,
       })
       .execute(),
     db
       .insertInto("product")
       .values({
-        name: "Product 2",
-        description: "Description for Product 2",
-        price: 29.99,
-      })
-      .execute(),
-    db
-      .insertInto("product")
-      .values({
-        name: "Product 3",
-        description: "Description for Product 3",
-        price: 39.99,
+        name: "Monitor LG UltraGear 27 QHD",
+        description: "Monitor gamer 27 com taxa de atualização de 144Hz, 1ms de resposta e tecnologia G-Sync.",
+        price: 1899.99,
       })
       .execute(),
   ]);

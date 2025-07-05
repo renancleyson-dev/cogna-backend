@@ -4,7 +4,7 @@ import {
   getProductById,
 } from "../repositories/product.repository";
 import { countResource } from "../utils/query";
-import { toProductDTO } from "../data/product.data";
+import { toProductDTO, type ProductDTO } from "../data/product.data";
 
 export async function listProducts(req: Request, res: Response) {
   const { page: qPage, perPage: qPerPage } = req.query;
@@ -27,13 +27,23 @@ export async function listProducts(req: Request, res: Response) {
     offset: offset,
   });
 
-  res.status(200).json({
+  const payload: ListProducts = {
     page,
     perPage,
     total,
     result: products.map(toProductDTO),
     totalPages: Math.ceil(total / perPage),
-  });
+  };
+
+  res.status(200).json(payload);
+}
+
+export type ListProducts = {
+  page: number;
+  perPage: number;
+  total: number;
+  result: ProductDTO[];
+  totalPages: number;
 }
 
 export async function showProduct(req: Request<{ id: string }>, res: Response) {
@@ -50,5 +60,8 @@ export async function showProduct(req: Request<{ id: string }>, res: Response) {
     return;
   }
 
-  res.status(200).json(toProductDTO(product));
+  const payload: ShowProduct = toProductDTO(product)
+  res.status(200).json(payload);
 }
+
+export type ShowProduct = ProductDTO;

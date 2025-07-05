@@ -11,3 +11,5 @@ export function toProductDTO(product: Selectable<ProductTable>) {
     updatedAt: product.updatedAt.toISOString(),
   };
 }
+
+export type ProductDTO = ReturnType<typeof toProductDTO>;
