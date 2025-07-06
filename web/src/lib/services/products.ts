@@ -27,7 +27,6 @@ export async function getProducts(page: number) {
   const response = await fetch(
     new URL(`/produtos?${searchParams}`, CONFIG.API_URL),
     {
-      cache: "no-store",
       headers: {
         authorization: `Bearer ${authToken}`,
       },

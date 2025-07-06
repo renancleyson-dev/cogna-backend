@@ -1,7 +1,9 @@
+'use client';
+
 import { useActionState } from "react";
+import { AlertCircleIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertTitle } from "@/components/ui/alert";
-import { AlertCircleIcon } from "lucide-react";
 import { SignInPayload } from "@/app/login/actions";
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
