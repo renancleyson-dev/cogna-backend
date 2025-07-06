@@ -1,4 +1,4 @@
-import { ProductList } from "@/components/ProductList";
+import { ProductList } from "@/components/product-list";
 import { getToken } from "@/lib/services/auth";
 import { getProducts } from "@/lib/services/products";
 import { redirect } from "next/navigation";

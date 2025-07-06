@@ -20,8 +20,8 @@ To start the entire project using Docker Compose:
   
 2. **Set up environment variables:**
     ```
-    cp server/.env.example server/.env
-    cp web/.env.example web/.env
+    cp ./server/.env.example ./server/.env
+    cp ./web/.env.example ./web/.env
     ```
 
 3. **Run docker compose for development**
@@ -41,7 +41,6 @@ To start the entire project using Docker Compose:
 ## Technical choices
 
 * **Monorepo like project**: According to the test, the project should be a Github repository and it would be good to setup Docker/Docker Compose with CI/CD pipelines. The best way to handle it with a fullstack NextJS application and a separate ExpressJS backend was making it into a monorepo to setup single pipelines to handle both services.
-* **Shared types**: with monorepo, I was able to use the types for API responses from the backend into the frontend. NOTE: It didn't worked unfortunately since it would make the frontend code would get too coupled with backend. but a simple script `sync-types.sh` to generate type declarations from backend API to the frontend codebase would do the trick.
 * **Backend folder structure**: I tried to make layers with clear separation of concerns with a 'core' layer that would handle application logic, so I used:
   * Classic Controller pattern with plain functions as Express route handlers
   * Repository pattern as the core layer

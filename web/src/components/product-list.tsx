@@ -1,18 +1,24 @@
-import { formatPrice } from "@/lib/utils";
-import { ProductDTO } from "@server/data/product.data";
+'use client';
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ShowProduct } from "@/lib/services/products";
+import { formatPrice } from "@/lib/utils";
 
 type ProductListProps = {
-  products: ProductDTO[];
+  products: ShowProduct[];
   page: number;
   totalPages: number;
 };
 
 export function ProductList({ products, totalPages, page }: ProductListProps) {
+  const router = useRouter();
+
   const productList = products.map((product) => (
     <div
       key={product.id}
-      className="w-80 border-2 rounded-lg p-4 hover:border-accent-foreground"
+      onClick={() => router.push(`/produto/${product.id}`)}
+      className="w-80 border-2 rounded-lg p-4 hover:border-accent-foreground cursor-pointer"
     >
       <Link
         href={`/produto/${product.id}`}

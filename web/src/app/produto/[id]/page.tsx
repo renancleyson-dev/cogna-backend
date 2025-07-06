@@ -1,7 +1,7 @@
 import { getProductDetails } from "@/lib/services/products";
 import { notFound } from "next/navigation";
 import { formatPrice } from "@/lib/utils";
-import { GoBackButton } from "@/components/GoBackButton";
+import { GoBackButton } from "@/components/go-back-button";
 
 type ProductDetailsProps = {
   params: Promise<{ id: string }>;
