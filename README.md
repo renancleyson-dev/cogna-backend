@@ -2,8 +2,8 @@
 
 This repository contains a multi-service application with two main components:
 
-- **server**: The backend API service. Production URL: test-cogna-server-production.up.railway.app
-- **web**: The fullstack web application. Production URL: test-cogna-web-production.up.railway.app
+- **server**: The backend API service. [Production URL](test-cogna-server-production.up.railway.app)
+- **web**: The fullstack web application. [Production URL](test-cogna-web-production.up.railway.app)
 
 Each service has its own README file with specific setup and usage instructions.  
 **Please refer to `/server/README.md` and `/web/README.md` for details about each service.**
