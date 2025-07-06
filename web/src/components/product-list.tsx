@@ -1,9 +1,9 @@
+import { ShowProduct } from "@/lib/services/products";
 import { formatPrice } from "@/lib/utils";
-import { ProductDTO } from "@server/data/product.data";
 import Link from "next/link";
 
 type ProductListProps = {
-  products: ProductDTO[];
+  products: ShowProduct[];
   page: number;
   totalPages: number;
 };

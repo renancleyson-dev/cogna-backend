@@ -19,10 +19,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Route and fetching details
 
 1. **index page(/)**
-    The product list fetching uses the `{ cache: 'no-store' }` which makes it similar to NextJS's classic `getServerSideProps`, which means that this page uses Server Side Rendering(SSR).
+    The product list fetching with Server Side Rendering(SSR).
 
 2. **Product detail (/produto/:id)**
-    The product detail page fetches from the backend API and caches it, unfortunately it can't run on build-time and be implemented with Static site generation(SSG) due to cookies usage for anonymous login authentication so we have SSR here too.
+    The product detail page fetches from the backend API and caches it.
 
 3. **Anonymous Login (/login)**
     Since the test description stated that a fake auth session would be interesting, I decided to use an anonymous authentication with the server and web services. This is static rendered by NextJS.
